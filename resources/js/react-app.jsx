@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom/client";
-import React from "react";
+import React, {StrictMode} from "react";
 import Select from 'react-select'
 
 /**
@@ -23,6 +23,7 @@ if(reactSelects.length > 0) {
             return
         }
         rootSelect.render(
+            <StrictMode>
             <Select
                 isMulti={isMulti}
                 options={options}
@@ -34,6 +35,7 @@ if(reactSelects.length > 0) {
                     );
                 }}
             />
+            </StrictMode>
         )
     })
 }
