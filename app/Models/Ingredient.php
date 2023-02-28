@@ -25,8 +25,9 @@ class Ingredient extends Model
      */
     public function plats()
     {
-        return $this->belongsToMany(Plat::class);
+        return $this->belongsToMany(Plat::class, 'plat_ingredient');
     }
+
 
     /**
      * @return HasOne
@@ -34,5 +35,21 @@ class Ingredient extends Model
     public function image()
     {
         return $this->hasOne(Image::class, 'model_id', 'id')->where('model_class', Ingredient::class);
+    }
+
+    public static function asReactSelectArray()
+    {
+        /*
+        $result = [];
+        foreach (static::query()->orderBy('name')->get() as $key => $ingredient) {
+            $result[] = [
+                'value' => $ingredient->id,
+                'label' => $ingredient->name,
+            ];
+        }
+
+        return $result;
+        */
+        return static::query()->orderBy('name')->selectRaw('id as value, name as label')->get();
     }
 }

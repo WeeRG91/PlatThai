@@ -39,6 +39,13 @@
                     <label for="description" class="form-label">Description</label>
                     <textarea required id="description" name="description" class="form-control">{{old('description')}}</textarea>
                 </div>
+                <div class="col-md-4">
+                    <label for="spicy_level" class="form-label">Niveau d'épice</label>
+                    <div class="react-select"
+                         data-options='@json($spicyLevelTypeReact)'
+                         data-name="spicy_level"
+                    ></div>
+                </div>
             </div>
             <div class="row">
                 <div class="col-md-12 text-end">

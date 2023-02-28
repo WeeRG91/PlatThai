@@ -11,9 +11,6 @@
         </div>
         <div class="row mt-3">
             <div class="col-md-12">
-                <div id="react-grille-plats" plats='@json($plats)'>
-
-                </div>
                 <div class="table-responsive">
                     <table id="tab-plats" class="table table-striped table-bordered">
                         <thead>
@@ -22,6 +19,7 @@
                             <th>Titre</th>
                             <th>Titre thai</th>
                             <th>Description</th>
+                            <th>Ingrédients</th>
                             <th>Spicy level</th>
                             <th>Actions</th>
                         </tr>
@@ -33,6 +31,13 @@
                                 <td>{{$plat->titre}}</td>
                                 <td>{{$plat->titre_thai}}</td>
                                 <td>{{$plat->description}}</td>
+                                <td>
+                                    <ul>
+                                        @foreach($plat->ingredients as $ingredient)
+                                        <li>{{$ingredient->name}}</li>
+                                        @endforeach
+                                    </ul>
+                                </td>
                                 <td>
                                     {!! $plat->getAttribute('icons') !!}
                                     <div>
