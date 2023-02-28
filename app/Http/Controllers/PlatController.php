@@ -85,6 +85,7 @@ class PlatController extends Controller
 
         return view('plat.edit')
             ->withSpicyLevelType(SpicyLevelType::asSelectArray())
+            ->withSpicyLevelTypeReact(SpicyLevelType::asReactSelectArray())
             ->withPlat($plat);
     }
 

@@ -42,12 +42,12 @@
                 </div>
                 <div class="col-md-4">
                     <label for="spicy_level" class="form-label">Niveau d'épice</label>
-                    <select class="form-select" id="spicy_level" name="spicy_level">
-                        <option value="">Sélectionner un niveau</option>
-                        @foreach($spicyLevelType as $key => $description)
-                        <option {{ $plat->spicy_level === $key ? 'selected' : null}} value="{{$key}}">{{$description}}</option>
-                        @endforeach
-                    </select>
+                    <div
+                        class="react-select"
+                        options='@json($spicyLevelTypeReact)'
+                        name="spicy_level"
+                        value='@json(\Illuminate\Support\Arr::first($spicyLevelTypeReact,fn($el, $key)=> $el['value'] === $plat->spicy_level))'
+                    ></div>
                 </div>
             </div>
             <div class="row">

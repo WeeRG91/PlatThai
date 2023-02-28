@@ -20,7 +20,6 @@ class SpicyLevelType extends Enum
 
     public static function getIcons(int $level) :string
     {
-        //<i class="fa-solid fa-pepper-hot"></i>
         $str = '';
         for($i = 1; $i <= $level; $i++) {
             $str .= '<i class="fa-solid fa-pepper-hot '.static::getCssClass($level) .'"></i>';
@@ -42,5 +41,17 @@ class SpicyLevelType extends Enum
             case static::LEVEL_5:
                 return 'text-danger';
         }
+    }
+
+    public static function asReactSelectArray()
+    {
+        $result = [];
+        foreach (static::asArray() as $key => $value) {
+            $result[] = [
+                'value' => $value,
+                'label' => static::getIcons($value) . ' <span class="ms-2">' . static::getDescription($value) .'</span>'
+            ];
+        }
+        return $result;
     }
 }
