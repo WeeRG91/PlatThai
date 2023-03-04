@@ -12,7 +12,7 @@
         <div class="row mt-3">
             <div class="col-md-12">
                 <div class="table-responsive">
-                    <table id="tab-plats" class="table table-striped table-bordered">
+                    <table class="listing table table-striped table-bordered">
                         <thead>
                         <tr>
                             <th>ID</th>
@@ -21,6 +21,7 @@
                             <th>Description</th>
                             <th>Ingrédients</th>
                             <th>Spicy level</th>
+                            <th>Prix</th>
                             <th>Actions</th>
                         </tr>
                         </thead>
@@ -44,6 +45,7 @@
                                         {{\App\Enums\SpicyLevelType::getDescription($plat->spicy_level)}}
                                     </div>
                                 </td>
+                                <td>{{$plat->price}}€</td>
                                 {{--<td><a href="{{route('plat.edit', ['id'=>$plat->id])}}" class="btn btn-sm btn-success">Editer</a></td>--}}
                                 <td>
                                     <a href="{{route('plat.edit', $plat)}}" class="btn btn-sm btn-success">Editer</a>
@@ -101,9 +103,8 @@
             e.preventDefault()
             console.log(e)
         })
-
          */
-
+        /*
         let trs = document.querySelectorAll('#tab-plats tr')
         trs.forEach(el=> {
             el.addEventListener('mouseover', (e)=> {
@@ -113,6 +114,7 @@
                 el.classList.remove('table-info')
             })
         })
+        */
         /*
         tab.addEventListener('mouseover', ()=> {
             tab.classList.add('bg-danger')

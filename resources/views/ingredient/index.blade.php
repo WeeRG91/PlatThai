@@ -12,7 +12,7 @@
         <div class="row mt-3">
             <div class="col-md-12">
                 <div class="table-responsive">
-                    <table id="tab-ingredients" class="table table-striped table-bordered">
+                    <table class="listing table table-striped table-bordered">
                         <thead>
                         <tr class="text-center">
                             <th class="text-center" style="width: 30px;">ID</th>
@@ -96,15 +96,6 @@
 
          */
 
-        let trs = document.querySelectorAll('#tab-ingredients tr')
-        trs.forEach(el=> {
-            el.addEventListener('mouseover', (e)=> {
-                el.classList.add('table-info')
-            })
-            el.addEventListener('mouseleave', (e)=> {
-                el.classList.remove('table-info')
-            })
-        })
         /*
         tab.addEventListener('mouseover', ()=> {
             tab.classList.add('bg-danger')

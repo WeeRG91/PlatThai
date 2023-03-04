@@ -58,6 +58,7 @@ class PlatController extends Controller
             'titre' =>  $request->input('titre'),
             'titre_thai' =>  $request->input('titre_thai'),
             'description' =>  $request->input('description'),
+            'price' =>  $request->input('price'),
             'spicy_level' =>  $request->input('spicy_level'),
         ]);
 
@@ -117,6 +118,7 @@ class PlatController extends Controller
             'titre' =>  $request->input('titre'),
             'titre_thai' =>  $request->input('titre_thai'),
             'description' =>  $request->input('description'),
+            'price' =>  $request->input('price'),
             'spicy_level' =>  $request->input('spicy_level'),
         ]);
 

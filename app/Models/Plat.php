@@ -17,7 +17,7 @@ class Plat extends Model
     //protected $table = 'plats';
     //protected $primaryKey = 'id_plat';
 
-    protected $fillable=['titre', 'titre_thai', 'description', 'spicy_level'];
+    protected $fillable=['titre', 'titre_thai', 'description', 'price', 'spicy_level'];
 
 
     /**

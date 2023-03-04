@@ -53,6 +53,10 @@
                          data-default-value='@json($selectedIngredients)'
                     ></div>
                 </div>
+                <div class="col-md-4">
+                    <label for="price" class="form-label">Prix</label>
+                    <input id="price" type="number" step="0.01" min="0" name="price" class="form-control" value="{{old('price') ?? $plat->price}}">
+                </div>
             </div>
             <div class="row">
                 <div class="col-md-6">

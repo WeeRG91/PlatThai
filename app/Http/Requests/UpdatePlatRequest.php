@@ -13,7 +13,7 @@ class UpdatePlatRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return true;//auth()->user()->can('edit plat');
     }
 
     /**

@@ -82,3 +82,9 @@ input:checked + .slider:before {
     height : 30px;
     width : auto;
 }
+table.listing tbody tr{
+    transition: background-color 0.7s;
+    &:hover {
+        background-color: #c5e8ef;
+    }
+}
