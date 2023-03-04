@@ -39,17 +39,18 @@ class Ingredient extends Model
 
     public static function asReactSelectArray()
     {
-        /*
+
         $result = [];
         foreach (static::query()->orderBy('name')->get() as $key => $ingredient) {
+            $src = $ingredient->image ? '/storage/'.$ingredient->image->path : null;
             $result[] = [
                 'value' => $ingredient->id,
-                'label' => $ingredient->name,
+                'label' => $src ? '<img src="'.$src.'" class="img-label me-2">' .$ingredient->name : $ingredient->name,
             ];
         }
-
+//dd($result);
         return $result;
-        */
-        return static::query()->orderBy('name')->selectRaw('id as value, name as label')->get();
+
+        //return static::query()->orderBy('name')->selectRaw('id as value, name as label')->get();
     }
 }

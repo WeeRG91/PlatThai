@@ -38,8 +38,8 @@ class PlatController extends Controller
 
     public function create()
     {
-
         return view('plat.create')
+            ->withIngredients(Ingredient::asReactSelectArray())
             ->withSpicyLevelTypeReact(SpicyLevelType::asReactSelectArray());
     }
 
@@ -60,6 +60,8 @@ class PlatController extends Controller
             'description' =>  $request->input('description'),
             'spicy_level' =>  $request->input('spicy_level'),
         ]);
+
+        $plat->ingredients()->sync($request->input('ingredients'));
 
         if($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {

@@ -46,7 +46,16 @@ class Plat extends Model
 
     public function asIngredientsAsReactSelectArray()
     {
-        return $this->ingredients()->orderBy('name')->selectRaw('id as value, name as label')->get();
+        $result = [];
+        foreach ($this->ingredients()->orderBy('name')->get() as $key => $ingredient) {
+            $src = $ingredient->image ? '/storage/'.$ingredient->image->path : null;
+            $result[] = [
+                'value' => $ingredient->id,
+                'label' => $src ? '<img src="'.$src.'" class="img-label me-2">' .$ingredient->name : $ingredient->name,
+            ];
+        }
+        return $result;
+        //return $this->ingredients()->orderBy('name')->selectRaw('id as value, name as label')->get();
     }
 
 
