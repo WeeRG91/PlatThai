@@ -3,22 +3,22 @@
 @section('title', 'Création de plat')
 
 @section('content')
-    <div class="container-fluid">
-        @if($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-        <div class="row">
-            <div class="col-md-12">
-                <h1 class="text-danger text-center">Création de plat</h1>
-            </div>
-        </div>
-        <form action="{{route('plat.store')}}" method="POST" enctype="multipart/form-data">
+@if($errors->any())
+
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+<div class="card main">
+    <div class="card-header">
+        <h3>Création d'un plat</h3>
+    </div>
+    <div class="card-body">
+        <form id="create-form" action="{{route('plat.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-md-4">
@@ -61,12 +61,15 @@
                     <textarea required id="description" name="description" class="form-control">{{old('description')}}</textarea>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12 text-end">
-                    <a href="{{route('plat.index')}}" class="btn btn-sm btn-secondary">Retour</a>
-                    <button type="submit" class="btn btn-success btn-sm">Enregistrer</button>
-                </div>
-            </div>
         </form>
     </div>
+    <div class="card-footer">
+        <div class="row">
+            <div class="col-md-12 text-end">
+                <a href="{{route('plat.index')}}" class="btn btn-sm btn-secondary">Retour</a>
+                <button form="create-form" type="submit" class="btn btn-success btn-sm">Enregistrer</button>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

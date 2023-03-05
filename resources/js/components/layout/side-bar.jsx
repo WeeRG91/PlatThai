@@ -26,7 +26,7 @@ if(sideBars.length > 0) {
         rootSidebar.render(
             <StrictMode>
                 <ProSidebarProvider>
-                    <Sidebar style={{minHeight: '100vh',backgroundColor: '#212529'}}
+                    <Sidebar style={{height: '100%',backgroundColor: '#212529', width:'250px', borderRightStyle:'unset'}}
                          menuItemStyles={{
                              button: ({ level, active, disabled }) => {
                                  return {

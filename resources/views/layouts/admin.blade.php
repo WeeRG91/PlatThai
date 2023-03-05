@@ -22,8 +22,8 @@
 <body>
 <div id="app">
     @include('layouts.includes.admin-nav')
-    <div class="d-flex">
-        <div class="bg-dark min-vh-100" style="min-width: 250px">
+    <div id="content-wrapper" class="d-flex">
+        <div class="sidebar-wrapper bg-dark">
             <div class="react-side-bar" data-items='@json($sideBarItems)'></div>
         </div>
         <main class="flex-grow-1 fade-in">

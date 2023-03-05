@@ -100,3 +100,23 @@ table.listing tbody tr{
         opacity:1;
     }
 }
+#content-wrapper {
+    display: flex;
+    //pour la barre de navigation en position fixed
+    margin-top: 55px;
+
+    .sidebar-wrapper {
+        min-height: calc(100vh - 55px);
+        min-width: 250px;
+    }
+    .card.main {
+        border-radius: 0;
+        height: 100%;
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+}
+
