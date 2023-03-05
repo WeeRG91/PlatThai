@@ -88,3 +88,15 @@ table.listing tbody tr{
         background-color: #c5e8ef;
     }
 }
+
+.fade-in {
+    animation: fadein 1s;
+}
+@keyframes fadein {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}

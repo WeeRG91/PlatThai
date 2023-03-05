@@ -3,7 +3,7 @@
 @section('title', 'Création d\'un ingredient')
 
 @section('content')
-    <div class="container">
+    <div class="container-fluid">
         @if($errors->any())
             <div class="alert alert-danger">
                 <ul>

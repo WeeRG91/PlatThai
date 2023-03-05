@@ -22,9 +22,14 @@
 <body>
 <div id="app">
     @include('layouts.includes.admin-nav')
-    <main class="py-4">
-        @yield('content')
-    </main>
+    <div class="d-flex">
+        <div class="bg-dark min-vh-100" style="min-width: 250px">
+            <div class="react-side-bar" data-items='@json($sideBarItems)'></div>
+        </div>
+        <main class="flex-grow-1 fade-in">
+            @yield('content')
+        </main>
+    </div>
 </div>
 @yield('script')
 </body>

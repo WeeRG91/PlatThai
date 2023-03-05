@@ -3,7 +3,7 @@
 @section('title', 'Listing des ingredients')
 
 @section('content')
-    <div class="container mt-5">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-12 text-end">
                 <a href="{{route('ingredient.create')}}" class="btn btn-info btn-sm">Créer un ingredient</a>

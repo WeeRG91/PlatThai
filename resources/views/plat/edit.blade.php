@@ -3,7 +3,7 @@
 @section('title', 'Edition d\'un plat')
 
 @section('content')
-    <div class="container">
+    <div class="container-fluid">
         @if($errors->any())
             <div class="alert alert-danger">
                 <ul>

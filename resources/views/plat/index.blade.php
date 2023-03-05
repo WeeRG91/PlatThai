@@ -3,7 +3,7 @@
 @section('title', 'Listing des plats')
 
 @section('content')
-    <div class="container mt-5">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-12 text-end">
                 <a href="{{route('plat.create')}}" class="btn btn-info btn-sm">Créer un plat</a>
