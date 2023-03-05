@@ -20,12 +20,12 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
-    <div id="app">
-        @include('layouts.includes.nav')
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
-    @yield('script')
+<div id="app">
+    @include('layouts.includes.admin-nav')
+    <main class="py-4">
+        @yield('content')
+    </main>
+</div>
+@yield('script')
 </body>
 </html>
