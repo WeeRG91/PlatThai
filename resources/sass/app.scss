@@ -113,6 +113,9 @@ table.listing tbody tr{
         border-radius: 0;
         height: 100%;
         .card-header {
+            h3 {
+                margin-bottom: 0;
+            }
             display: flex;
             justify-content: space-between;
             align-items: center;

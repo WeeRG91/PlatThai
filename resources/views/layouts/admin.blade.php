@@ -22,7 +22,7 @@
 <body>
 <div id="app">
     @include('layouts.includes.admin-nav')
-    <div id="content-wrapper" class="d-flex">
+    <div id="content-wrapper">
         <div class="sidebar-wrapper bg-dark">
             <div class="react-side-bar" data-items='@json($sideBarItems)'></div>
         </div>

@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
-@section('title', 'Listing des ingredients')
+@section('title', 'Listing des plats')
 
 @section('content')
     <div class="card main">
         <div class="card-header">
-            <h3>Liste des ingrédients</h3>
+            <h3>Listing des utilisateurs</h3>
             <div>
-                <a href="{{route('ingredient.create')}}" class="btn btn-info btn-sm">Créer un ingredient</a>
+                <a href="{{route('utilisateur.create')}}" class="btn btn-info btn-sm">Créer un utilisateur</a>
             </div>
         </div>
         <div class="card-body">
@@ -16,35 +16,21 @@
                     <div class="table-responsive">
                         <table class="listing table table-striped table-bordered">
                             <thead>
-                            <tr class="text-center">
-                                <th class="text-center" style="width: 30px;">ID</th>
-                                <th class="text-center" style="width: 200px;">Image</th>
-                                <th>name</th>
-                                <th>Description</th>
-                                <th class="text-center" style="width: 75px;">Allergène</th>
-                                <th style="width: 150px;">Actions</th>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nom</th>
+                                <th>E-mail</th>
+                                <th>Actions</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($ingredients as $ingredient)
-                                <tr>
-                                    <td>{{$ingredient->id}}</td>
-                                    <td>
-                                        @if($ingredient->image)
-                                            <img class="img-fluid" src="/storage/{{$ingredient->image->path}}" alt="{{$ingredient->image->nom}}">
-                                        @endif
-                                    </td>
-                                    <td>{{$ingredient->name}}</td>
-                                    <td>{{$ingredient->description}}</td>
-                                    <td class="text-center"> {!! $ingredient->is_allergen === 1 ? '<i class="fa-solid fa-exclamation h3 text-danger"></i>' : '<i class="fa-solid fa-circle text-success"></i>' !!}</td>
-
-                                    {{--<td><a href="{{route('plat.edit', ['id'=>$plat->id])}}" class="btn btn-sm btn-success">Editer</a></td>--}}
-                                    <td>
-                                        <a href="{{route('ingredient.edit', $ingredient)}}" class="btn btn-sm btn-success">Editer</a>
-                                        <a href="{{route('ingredient.delete', $ingredient)}}" class="btn btn-sm btn-danger btn-delete">Supprimer</a>
-                                    </td>
-                                </tr>
-                            @endforeach
+                                @foreach($users as $user)
+                                    <tr>
+                                        <td>{{$user->id}}</td>
+                                        <td>{{$user->name}}</td>
+                                        <td>{{$user->email}}</td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -96,9 +82,18 @@
             e.preventDefault()
             console.log(e)
         })
-
          */
-
+        /*
+        let trs = document.querySelectorAll('#tab-plats tr')
+        trs.forEach(el=> {
+            el.addEventListener('mouseover', (e)=> {
+                el.classList.add('table-info')
+            })
+            el.addEventListener('mouseleave', (e)=> {
+                el.classList.remove('table-info')
+            })
+        })
+        */
         /*
         tab.addEventListener('mouseover', ()=> {
             tab.classList.add('bg-danger')

@@ -3,6 +3,7 @@
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\PlatController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,6 +43,14 @@ Route::name('image.')->prefix('image')->group(function (){
     Route::get('{id}/delete', [ImageController::class, 'delete'])->name('delete');
 });
 
+Route::name('utilisateur.')->prefix('utilisateur')->group(function (){
+    Route::get('create', [UserController::class, 'create'])->name('create');
+    Route::post('store', [UserController::class, 'store'])->name('store');
+    Route::get('index', [UserController::class, 'index'])->name('index');
+    Route::get('{user}/edit', [UserController::class, 'edit'])->name('edit');
+    Route::post('update/{user}', [UserController::class, 'update'])->name('update');
+    Route::get('{id}/delete', [UserController::class, 'delete'])->name('delete');
+});
 
 Auth::routes();
 
