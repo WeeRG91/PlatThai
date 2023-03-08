@@ -16,7 +16,7 @@ class IngredientController extends Controller
     public function index()
     {
         $ingredients = Ingredient::all();
-        return view('ingredient.index')->withIngredients($ingredients);
+        return view('admin.ingredient.index')->withIngredients($ingredients);
     }
 
     /**
@@ -25,7 +25,7 @@ class IngredientController extends Controller
      */
     public function create()
     {
-        return view('ingredient.create');
+        return view('admin.ingredient.create');
     }
 
     /**
@@ -52,7 +52,7 @@ class IngredientController extends Controller
             ]);
         }
 
-        return redirect()->route('ingredient.index');
+        return redirect()->route('admin.ingredient.index');
     }
 
     /**
@@ -74,7 +74,7 @@ class IngredientController extends Controller
      */
     public function edit(Ingredient $ingredient)
     {
-        return view('ingredient.edit')->withIngredient($ingredient);
+        return view('admin.ingredient.edit')->withIngredient($ingredient);
     }
 
     /**
@@ -111,7 +111,7 @@ class IngredientController extends Controller
                 'model_class' => Ingredient::class,
             ]);
         }
-        return redirect()->route('ingredient.index');
+        return redirect()->route('admin.ingredient.index');
     }
 
     /**

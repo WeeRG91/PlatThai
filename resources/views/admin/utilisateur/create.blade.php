@@ -17,7 +17,7 @@
             <h3>Création d'un utilisateur</h3>
         </div>
         <div class="card-body">
-            <form id="create-form" action="{{route('utilisateur.store')}}" method="POST" enctype="multipart/form-data">
+            <form id="create-form" action="{{route('admin.utilisateur.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-md-4">
@@ -29,8 +29,8 @@
                         <input id="email" type="text" name="email" class="form-control" value="{{old('email')}}">
                     </div>
                     <div class="col-md-4">
-                        <label for="images" class="form-label">Sélectionner une image</label>
-                        <input class="form-control" type="file" name="images[]" id="images">
+                        <label for="image" class="form-label">Sélectionner une image</label>
+                        <input class="form-control" type="file" name="image" id="image">
                     </div>
                 </div>
                 <div class="row">
@@ -68,7 +68,7 @@
         <div class="card-footer">
             <div class="row">
                 <div class="col-md-12 text-end">
-                    <a href="{{route('utilisateur.index')}}" class="btn btn-sm btn-secondary">Retour</a>
+                    <a href="{{route('admin.utilisateur.index')}}" class="btn btn-sm btn-secondary">Retour</a>
                     <button form="create-form" type="submit" class="btn btn-success btn-sm">Enregistrer</button>
                 </div>
             </div>

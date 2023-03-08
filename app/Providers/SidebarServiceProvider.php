@@ -25,26 +25,26 @@ class SidebarServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer(['ingredient.*', 'plat.*', 'utilisateur.*'], function ($view) {
+        View::composer(['admin.*'], function ($view) {
             $currentRoute = Route::getCurrentRoute()->uri;
 
             $items = [
                 [
 
                     'label' => 'Plats',
-                    'href' => route('plat.index'),
+                    'href' => route('admin.plat.index'),
                     'active' => str_contains($currentRoute, 'plat'),
                     'icon' => 'fa-solid fa-utensils'
                 ],
                 [
                     'label' => 'Ingrédients',
-                    'href' => route('ingredient.index'),
+                    'href' => route('admin.ingredient.index'),
                     'active' => str_contains($currentRoute, 'ingredient'),
                     'icon' => 'fa-solid fa-carrot'
                 ],
                 [
                     'label' => 'Utilisateurs',
-                    'href' => route('utilisateur.index'),
+                    'href' => route('admin.utilisateur.index'),
                     'active' => str_contains($currentRoute, 'utilisateur'),
                     'icon' => 'fa-solid fa-users'
                 ]

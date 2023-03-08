@@ -17,7 +17,7 @@
             <h3>Création d'un ingrédient</h3>
         </div>
         <div class="card-body">
-            <form id="create-form" action="{{route('ingredient.store')}}" method="POST" enctype="multipart/form-data">
+            <form id="create-form" action="{{route('admin.ingredient.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-md-4">
@@ -47,7 +47,7 @@
         <div class="card-footer">
             <div class="row">
                 <div class="col-md-12 text-end">
-                    <a href="{{route('ingredient.index')}}" class="btn btn-sm btn-secondary">Retour</a>
+                    <a href="{{route('admin.ingredient.index')}}" class="btn btn-sm btn-secondary">Retour</a>
                     <button form="create-form" type="submit" class="btn btn-success btn-sm">Enregistrer</button>
                 </div>
             </div>

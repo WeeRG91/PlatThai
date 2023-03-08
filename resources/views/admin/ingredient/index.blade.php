@@ -7,7 +7,7 @@
         <div class="card-header">
             <h3>Liste des ingrédients</h3>
             <div>
-                <a href="{{route('ingredient.create')}}" class="btn btn-info btn-sm">Créer un ingredient</a>
+                <a href="{{route('admin.ingredient.create')}}" class="btn btn-info btn-sm">Créer un ingredient</a>
             </div>
         </div>
         <div class="card-body">
@@ -40,8 +40,8 @@
 
                                     {{--<td><a href="{{route('plat.edit', ['id'=>$plat->id])}}" class="btn btn-sm btn-success">Editer</a></td>--}}
                                     <td>
-                                        <a href="{{route('ingredient.edit', $ingredient)}}" class="btn btn-sm btn-success">Editer</a>
-                                        <a href="{{route('ingredient.delete', $ingredient)}}" class="btn btn-sm btn-danger btn-delete">Supprimer</a>
+                                        <a href="{{route('admin.ingredient.edit', $ingredient)}}" class="btn btn-sm btn-success">Editer</a>
+                                        <a href="{{route('admin.ingredient.delete', $ingredient)}}" class="btn btn-sm btn-danger btn-delete">Supprimer</a>
                                     </td>
                                 </tr>
                             @endforeach

@@ -7,7 +7,7 @@
         <div class="card-header">
             <h3>Listing des plats</h3>
             <div>
-                <a href="{{route('plat.create')}}" class="btn btn-info btn-sm">Créer un plat</a>
+                <a href="{{route('admin.plat.create')}}" class="btn btn-info btn-sm">Créer un plat</a>
             </div>
         </div>
         <div class="card-body">
@@ -50,8 +50,8 @@
                                     <td>{{$plat->price}}€</td>
                                     {{--<td><a href="{{route('plat.edit', ['id'=>$plat->id])}}" class="btn btn-sm btn-success">Editer</a></td>--}}
                                     <td>
-                                        <a href="{{route('plat.edit', $plat)}}" class="btn btn-sm btn-success">Editer</a>
-                                        <a href="{{route('plat.delete', $plat)}}" class="btn btn-sm btn-danger btn-delete">Supprimer</a>
+                                        <a href="{{route('admin.plat.edit', $plat)}}" class="btn btn-sm btn-success">Editer</a>
+                                        <a href="{{route('admin.plat.delete', $plat)}}" class="btn btn-sm btn-danger btn-delete">Supprimer</a>
                                     </td>
                                 </tr>
                             @endforeach

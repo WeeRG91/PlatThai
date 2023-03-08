@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Enums\Permissions\PermissionType;
+use App\Enums\Permissions\PlatPermissionType;
+use App\Http\Requests\StoreUserRequest;
+use App\Models\Image;
 use App\Models\User;
 use Illuminate\Hashing\BcryptHasher;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Models\Permission;
 
 class UserController extends Controller
@@ -18,7 +23,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('utilisateur.index')->withUsers(User::all());
+
+        return view('admin.utilisateur.index')->withUsers(User::all());
     }
 
     /**
@@ -27,7 +33,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('utilisateur.create')
+        return view('admin.utilisateur.create')
             ->withPermissionTypes(PermissionType::asFullArray())
             ->withPermissions(Permission::all());
     }
@@ -35,22 +41,32 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param StoreUserRequest $request
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        dd($request->all());
+        $user = User::create([
+           'name' => $request->input('name'),
+           'email' => $request->input('email'),
+           'password' => Hash::make($request->input('password')),
+        ]);
 
-        /**
-         * Pour enregistrer le mot de passe il faut le crypter avec BCrypt
-         */
-        //'password' => Hash::make($data['password']),
+        if($request->hasFile('image')){
+            $uploadedImage = $request->file('image');
+            $path = Storage::disk('public')->putFile('images/user/'.$user->id, $uploadedImage);
 
+            Image::create([
+                'nom' =>  $uploadedImage->getClientOriginalName(),
+                'path' => $path,
+                'model_id' => $user->id,
+                'model_class' => User::class,
+            ]);
+        }
 
-        /**
-         * Il faudra ajouter u
-         */
+        $user->permissions()->sync($request->input('permissions'));
+
+        return redirect()->route('utilisateur.index');
     }
 
     /**

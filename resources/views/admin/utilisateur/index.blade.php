@@ -7,7 +7,7 @@
         <div class="card-header">
             <h3>Listing des utilisateurs</h3>
             <div>
-                <a href="{{route('utilisateur.create')}}" class="btn btn-info btn-sm">Créer un utilisateur</a>
+                <a href="{{route('admin.utilisateur.create')}}" class="btn btn-info btn-sm">Créer un utilisateur</a>
             </div>
         </div>
         <div class="card-body">

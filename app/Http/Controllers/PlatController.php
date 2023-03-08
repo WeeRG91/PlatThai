@@ -33,12 +33,12 @@ class PlatController extends Controller
             $plat->append('icons');
         }
         */
-        return view('plat.index')->withPlats($plats);
+        return view('admin.plat.index')->withPlats($plats);
     }
 
     public function create()
     {
-        return view('plat.create')
+        return view('admin.plat.create')
             ->withIngredients(Ingredient::asReactSelectArray())
             ->withSpicyLevelTypeReact(SpicyLevelType::asReactSelectArray());
     }
@@ -81,7 +81,7 @@ class PlatController extends Controller
 
 
 
-        return redirect()->route('plat.index');
+        return redirect()->route('admin.plat.index');
     }
 
     public function edit($id)
@@ -101,7 +101,7 @@ class PlatController extends Controller
         */
         $selectedSpicyLevel = \Illuminate\Support\Arr::first(SpicyLevelType::asReactSelectArray(),fn($el, $key)=> $el['value'] === $plat->spicy_level);
 
-        return view('plat.edit')
+        return view('admin.plat.edit')
             ->withIngredients(Ingredient::asReactSelectArray())
             ->withSelectedIngredients($plat->asIngredientsAsReactSelectArray())
             ->withSelectedSpicyLevel($selectedSpicyLevel)
@@ -148,7 +148,7 @@ class PlatController extends Controller
 
             }
         }
-        return redirect()->route('plat.index');
+        return redirect()->route('admin.plat.index');
     }
 
     public function delete($id)

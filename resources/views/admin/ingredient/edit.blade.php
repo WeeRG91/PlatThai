@@ -17,7 +17,7 @@
             <h3>Edition de {{$ingredient->name}}</h3>
         </div>
         <div class="card-body">
-            <form id="edit-form" action="{{route('ingredient.update', $ingredient)}}" method="POST" enctype="multipart/form-data">
+            <form id="edit-form" action="{{route('admin.ingredient.update', $ingredient)}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-md-4">
@@ -47,7 +47,7 @@
                         <div class="position-relative">
                             @if($ingredient->image)
                                 <img class="img-fluid" src="/storage/{{$ingredient->image->path}}" alt="{{$ingredient->image->nom}}">
-                                <a href="{{route('image.delete', $ingredient->image->id)}}" class="btn btn-sm btn-danger position-absolute" style="top:5px;right:5px;"><i class="fa fa-times"></i></a>
+                                <a href="{{route('admin.image.delete', $ingredient->image->id)}}" class="btn btn-sm btn-danger position-absolute" style="top:5px;right:5px;"><i class="fa fa-times"></i></a>
                             @endif
                         </div>
                     </div>
@@ -57,7 +57,7 @@
         <div class="card-footer">
             <div class="row">
                 <div class="col-md-12 text-end">
-                    <a href="{{route('ingredient.index')}}" class="btn btn-sm btn-secondary">Retour</a>
+                    <a href="{{route('admin.ingredient.index')}}" class="btn btn-sm btn-secondary">Retour</a>
                     <button form="edit-form" type="submit" class="btn btn-success btn-sm">Enregistrer</button>
                 </div>
             </div>
