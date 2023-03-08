@@ -2,11 +2,13 @@
 
 namespace App\Enums;
 
+use App\Enums\Traits\EnumTrait;
 use BenSampo\Enum\Attributes\Description;
 use BenSampo\Enum\Enum;
 
 class SpicyLevelType extends Enum
 {
+    use EnumTrait;
     #[Description('Pas épicé du tout !')]
     const LEVEL_1 = 1;
     #[Description('Très légèrement épicé')]
