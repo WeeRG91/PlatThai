@@ -2,10 +2,8 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Enums\Permissions\RoleType;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
@@ -20,6 +18,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(PlatPermissionSeeder::class);
         $this->call(RoleSeeder::class);
+        $this->call(IngredientPermissionSeeder::class);
+        $this->call(UserPermissionSeeder::class);
 
         $this->updateAdminPermissions();
     }

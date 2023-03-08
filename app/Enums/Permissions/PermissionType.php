@@ -11,4 +11,5 @@ class PermissionType extends Enum
     use EnumTrait;
     const PLAT = 1;
     const INGREDIENT = 2;
+    const USER = 3;
 }
