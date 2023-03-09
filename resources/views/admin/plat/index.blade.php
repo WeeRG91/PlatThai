@@ -33,7 +33,7 @@
                                     <td>{{$plat->id}}</td>
                                     <td>{{$plat->titre}}</td>
                                     <td>{{$plat->titre_thai}}</td>
-                                    <td>{{$plat->description}}</td>
+                                    <td>{!! $plat->description !!}</td>
                                     <td>
                                         <ul>
                                             @foreach($plat->ingredients as $ingredient)

@@ -35,10 +35,8 @@
                                         @endif
                                     </td>
                                     <td>{{$ingredient->name}}</td>
-                                    <td>{{$ingredient->description}}</td>
+                                    <td>{!! $ingredient->description !!}</td>
                                     <td class="text-center"> {!! $ingredient->is_allergen === 1 ? '<i class="fa-solid fa-exclamation h3 text-danger"></i>' : '<i class="fa-solid fa-circle text-success"></i>' !!}</td>
-
-                                    {{--<td><a href="{{route('plat.edit', ['id'=>$plat->id])}}" class="btn btn-sm btn-success">Editer</a></td>--}}
                                     <td>
                                         <a href="{{route('admin.ingredient.edit', $ingredient)}}" class="btn btn-sm btn-success">Editer</a>
                                         <a href="{{route('admin.ingredient.delete', $ingredient)}}" class="btn btn-sm btn-danger btn-delete">Supprimer</a>

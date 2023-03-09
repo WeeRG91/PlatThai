@@ -21,25 +21,36 @@
                 @csrf
                 <div class="row">
                     <div class="col-md-4">
-                        <label for="name" class="form-label">Titre</label>
-                        <input id="name" type="text" name="name" class="form-control" required value="{{old('name') ?? $ingredient->name}}">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Titre</label>
+                            <input id="name" type="text" name="name" class="form-control" required value="{{old('name') ?? $ingredient->name}}">
+                        </div>
                     </div>
                     <div class="col-md-4">
-                        <label for="image" class="form-label">Sélectionner une image</label>
-                        <input class="form-control" type="file" name="image" id="image">
+                        <div class="mb-3">
+                            <label for="image" class="form-label">Sélectionner une image</label>
+                            <input class="form-control" type="file" name="image" id="image">
+                        </div>
                     </div>
                     <div class="col-md-4">
-                        <label  class="form-label d-block">Allergène ?</label>
-                        <label for="is_allergen" class="switch">
-                            <input type="checkbox" name="is_allergen" {{$ingredient->is_allergen ? 'checked': null}} id="is_allergen" value="1">
-                            <span class="slider round"></span>
-                        </label>
+                        <div class="mb-3">
+                            <label  class="form-label d-block">Allergène ?</label>
+                            <label for="is_allergen" class="switch">
+                                <input type="checkbox" name="is_allergen" {{$ingredient->is_allergen ? 'checked': null}} id="is_allergen" value="1">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6">
-                        <label for="description" class="form-label">Description</label>
-                        <textarea required id="description" name="description" class="form-control">{{old('description') ?? $ingredient->description}}</textarea>
+                    <div class="col-md-12">
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description</label>
+                            <div class="react-wysiwyg"
+                                 data-name='@json('description')'
+                                 data-value='@json(old('description') ?? $ingredient->description)'
+                            ></div>
+                        </div>
                     </div>
                 </div>
                 <div class="row">

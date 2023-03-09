@@ -22,43 +22,60 @@
                 @csrf
                 <div class="row">
                     <div class="col-md-4">
-                        <label for="titre" class="form-label">Titre</label>
-                        <input id="titre" type="text" name="titre" class="form-control" required value="{{old('titre')}}">
+                        <div class="mb-3">
+                            <label for="titre" class="form-label">Titre</label>
+                            <input id="titre" type="text" name="titre" class="form-control" required value="{{old('titre')}}">
+                        </div>
                     </div>
                     <div class="col-md-4">
-                        <label for="titre_thai" class="form-label">Titre thai</label>
-                        <input id="titre_thai" type="text" name="titre_thai" class="form-control" value="{{old('titre_thai')}}">
+                        <div class="mb-3">
+                            <label for="titre_thai" class="form-label">Titre thai</label>
+                            <input id="titre_thai" type="text" name="titre_thai" class="form-control" value="{{old('titre_thai')}}">
+                        </div>
                     </div>
                     <div class="col-md-4">
-                        <label for="images" class="form-label">Sélectionner des images</label>
-                        <input multiple class="form-control" type="file" name="images[]" id="images">
+                        <div class="mb-3">
+                            <label for="images" class="form-label">Sélectionner des images</label>
+                            <input multiple class="form-control" type="file" name="images[]" id="images">
+                        </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
-                        <label for="spicy_level" class="form-label">Niveau d'épice</label>
-                        <div class="react-select"
-                             data-options='@json($spicyLevelTypeReact)'
-                             data-name="spicy_level"
-                        ></div>
+                        <div class="mb-3">
+                            <label for="spicy_level" class="form-label">Niveau d'épice</label>
+                            <div class="react-select"
+                                 data-options='@json($spicyLevelTypeReact)'
+                                 data-name="spicy_level"
+                            ></div>
+                        </div>
                     </div>
                     <div class="col-md-4">
-                        <label for="ingredients" class="form-label">Ingredients</label>
-                        <div class="react-select"
-                             data-options='@json($ingredients)'
-                             data-name="ingredients[]"
-                             data-is-multi='@json(true)'
-                        ></div>
+                        <div class="mb-3">
+                            <label for="ingredients" class="form-label">Ingredients</label>
+                            <div class="react-select"
+                                 data-options='@json($ingredients)'
+                                 data-name="ingredients[]"
+                                 data-is-multi='@json(true)'
+                            ></div>
+                        </div>
                     </div>
                     <div class="col-md-4">
-                        <label for="price" class="form-label">Prix</label>
-                        <input id="price" type="number" step="0.01" min="0" name="price" class="form-control" value="{{old('price')}}">
+                        <div class="mb-3">
+                            <label for="price" class="form-label">Prix</label>
+                            <input id="price" type="number" step="0.01" min="0" name="price" class="form-control" value="{{old('price')}}">
+                        </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6">
-                        <label for="description" class="form-label">Description</label>
-                        <textarea required id="description" name="description" class="form-control">{{old('description')}}</textarea>
+                    <div class="col-md-12">
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description</label>
+                            <div class="react-wysiwyg"
+                                 data-name='@json('description')'
+                                 data-value='@json(old('description') ?? '')'
+                            ></div>
+                        </div>
                     </div>
                 </div>
             </form>
