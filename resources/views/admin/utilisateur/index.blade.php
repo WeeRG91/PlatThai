@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Listing des plats')
+@section('title', 'Listing des utilisateurs')
 
 @section('content')
     <div class="card main">
@@ -29,6 +29,10 @@
                                         <td>{{$user->id}}</td>
                                         <td>{{$user->name}}</td>
                                         <td>{{$user->email}}</td>
+                                        <td>
+                                            <a href="{{route('admin.utilisateur.edit', $user)}}" class="btn btn-sm btn-success">Editer</a>
+                                            <a href="{{route('admin.utilisateur.delete', $user)}}" class="btn btn-sm btn-danger btn-delete">Supprimer</a>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

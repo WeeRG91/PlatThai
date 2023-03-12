@@ -68,7 +68,6 @@
                                     <input type="checkbox" name="permissions[]" id="permission_{{$permission->id}}" value="{{$permission->id}}">
                                     <span class="slider round"></span>
                                 </label>
-                                <div></div>
                             @endforeach
                         </div>
                     @endforeach

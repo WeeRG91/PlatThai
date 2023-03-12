@@ -14,5 +14,4 @@ class PlatPermissionType extends Enum
    const CREATE_PLAT = 'plat create';
    const DELETE_PLAT = 'plat delete';
 
-
 }

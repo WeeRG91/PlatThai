@@ -3,6 +3,7 @@
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\PlatController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,8 +22,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function (){
-    
+Route::prefix('admin')->name('admin.')->group(function (){
+
     Route::name('plat.')->prefix('plat')->group(function (){
         Route::get('create', [PlatController::class, 'create'])->name('create');
         Route::post('store', [PlatController::class, 'store'])->name('store');
@@ -42,6 +43,7 @@ Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function (){
     });
 
     Route::name('image.')->prefix('image')->group(function (){
+        Route::get('index', [ImageController::class, 'index'])->name('index');
         Route::get('{id}/delete', [ImageController::class, 'delete'])->name('delete');
     });
 
@@ -49,9 +51,18 @@ Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function (){
         Route::get('create', [UserController::class, 'create'])->name('create');
         Route::post('store', [UserController::class, 'store'])->name('store');
         Route::get('index', [UserController::class, 'index'])->name('index');
-        Route::get('{user}/edit', [UserController::class, 'edit'])->name('edit');
-        Route::post('update/{user}', [UserController::class, 'update'])->name('update');
+        Route::get('{id}/edit', [UserController::class, 'edit'])->name('edit');
+        Route::post('update/{id}', [UserController::class, 'update'])->name('update');
         Route::get('{id}/delete', [UserController::class, 'delete'])->name('delete');
+    });
+
+    Route::name('role.')->prefix('role')->group(function (){
+        Route::get('create', [RoleController::class, 'create'])->name('create');
+        Route::post('store', [RoleController::class, 'store'])->name('store');
+        Route::get('index', [RoleController::class, 'index'])->name('index');
+        Route::get('{id}/edit', [RoleController::class, 'edit'])->name('edit');
+        Route::post('update/{id}', [RoleController::class, 'update'])->name('update');
+        Route::get('{id}/delete', [RoleController::class, 'delete'])->name('delete');
     });
 });
 

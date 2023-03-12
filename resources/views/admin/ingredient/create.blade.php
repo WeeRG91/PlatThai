@@ -23,7 +23,6 @@
                     <div class="col-md-4">
                         <div class="mb-3">
                             <label for="name" class="form-label">Titre</label>
-                            <input id="name" type="text" name="name" class="form-control" required value="{{old('name')}}"><label for="name" class="form-label">Titre</label>
                             <input id="name" type="text" name="name" class="form-control" required value="{{old('name')}}">
                         </div>
                     </div>

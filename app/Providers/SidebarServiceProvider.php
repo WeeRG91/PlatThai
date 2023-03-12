@@ -30,7 +30,6 @@ class SidebarServiceProvider extends ServiceProvider
 
             $items = [
                 [
-
                     'label' => 'Plats',
                     'href' => route('admin.plat.index'),
                     'active' => str_contains($currentRoute, 'plat'),
@@ -47,6 +46,18 @@ class SidebarServiceProvider extends ServiceProvider
                     'href' => route('admin.utilisateur.index'),
                     'active' => str_contains($currentRoute, 'utilisateur'),
                     'icon' => 'fa-solid fa-users'
+                ],
+                [
+                    'label' => 'Roles',
+                    'href' => route('admin.role.index'),
+                    'active' => str_contains($currentRoute, 'role'),
+                    'icon' => 'fa-solid fa-person-circle-question'
+                ],
+                [
+                    'label' => 'Images',
+                    'href' => route('admin.image.index'),
+                    'active' => str_contains($currentRoute, 'image'),
+                    'icon' => 'fa-solid fa-image'
                 ]
             ];
             return $view->with('sideBarItems', $items);

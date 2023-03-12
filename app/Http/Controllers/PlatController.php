@@ -13,15 +13,18 @@ use Illuminate\Support\Facades\Storage;
 
 class PlatController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
 
-        /*$plats = Plat::all();
-        return view('plat.index')->withPlats($plats);*/
-        //dd(Plat::all());
-        $plats = Plat::all();
 
-        $plats->each->append('icons');
+        $plats = Plat::query();
+
+        if($request->has('ingredient_id')) {
+            $plats->join('plat_ingredient as pi', 'plats.id', '=', 'pi.plat_id')
+                ->where('pi.ingredient_id', $request->input('ingredient_id'));
+        }
+
+        //$plats->each->append('icons');
         /*
         $plats->each(fn($plat)=> $plat->append('icons'));
 
@@ -33,7 +36,7 @@ class PlatController extends Controller
             $plat->append('icons');
         }
         */
-        return view('admin.plat.index')->withPlats($plats);
+        return view('admin.plat.index')->withPlats($plats->get());
     }
 
     public function create()

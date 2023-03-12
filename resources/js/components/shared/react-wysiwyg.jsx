@@ -7,8 +7,8 @@ if(reactWysiwyg.length > 0) {
     reactWysiwyg.forEach(wysiwyg=> {
         let rootSelect = ReactDOM.createRoot(wysiwyg)
 
-        const config = wysiwyg.getAttribute('data-config')
-            ? JSON.parse(wysiwyg.getAttribute('data-config'))
+        const config = wysiwyg.dataset.config
+            ? JSON.parse(wysiwyg.dataset.config)
             : null
         let placeHolder = wysiwyg.getAttribute('data-place-holder')
             ? JSON.parse(wysiwyg.getAttribute('data-place-holder'))

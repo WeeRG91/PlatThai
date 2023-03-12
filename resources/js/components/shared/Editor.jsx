@@ -26,7 +26,8 @@ function CustomEditor(props) {
                 onReady={ editor => {
                     // You can store the "editor" and use when it is needed.
                 } }
-                onChange={ ( event, editor ) => {
+                onChange={ (event, editor) => {
+                    console.log(event)
                     onUpdate(event, editor)
                 } }
                 onBlur={ ( event, editor ) => {

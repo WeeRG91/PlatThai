@@ -15,4 +15,17 @@ class Image extends Model
     {
         return $this->hasOne(Plat::class, 'id', 'model_id')->where('model_class',Plat::class);
     }
+
+    public function getModelLinkAttribute()
+    {
+
+        switch ($this->model_class){
+            case Plat::class:
+                return route('admin.plat.edit', $this->model_id);
+            case Ingredient::class:
+                return route('admin.plat.index', ['ingredient_id' => $this->model_id]);
+            case User::class:
+                return route('admin.utilisateur.edit', $this->model_id);
+        }
+    }
 }
