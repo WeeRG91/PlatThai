@@ -57,7 +57,7 @@
 
 .slider:before {
     position: absolute;
-    content: "";
+    content: '';
     height: 26px;
     width: 26px;
     left: 4px;
@@ -73,6 +73,20 @@ input:checked + .slider {
 
 input:focus + .slider {
     box-shadow: 0 0 1px #2196F3;
+}
+.switch.stock i {
+    color:  rgba(var(--bs-danger-rgb));
+    transition: .4s;
+    top: 10px;
+    position: absolute;
+    left: 10px;
+}
+
+input:checked + .slider i{
+    color: rgba(var(--bs-success-rgb));
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
 }
 
 input:checked + .slider:before {

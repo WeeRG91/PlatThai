@@ -1,6 +1,6 @@
 import React, {Component, StrictMode} from 'react';
 import ReactDOM from "react-dom/client";
-import CustomEditor from "./Editor";
+import CustomEditor from "./CustomEditor";
 
 let reactWysiwyg = document.querySelectorAll('.react-wysiwyg')
 if(reactWysiwyg.length > 0) {

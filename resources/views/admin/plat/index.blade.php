@@ -11,14 +11,58 @@
             </div>
         </div>
         <div class="card-body">
+            <form action="{{route('admin.plat.index')}}" method="get">
+            <div class="row">
+                <div class="col-md-3">
+                        <label for="search" class="form-label">Rechercher</label>
+                        <input id="search" type="text" name="search" class="form-control" value="{{old('search')}}">
+                </div>
+                    <div class="col-md-3">
+                        <div>
+                            <label for="ingredients" class="form-label">Ingredients</label>
+                            <div class="react-select"
+                                 data-options='@json($ingredients)'
+                                 data-name="ingredients[]"
+                                 data-is-multi='@json(true)'
+                                 data-default-value='@json($selectedIngredients)'
+                            ></div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="spicy_level" class="form-label">Niveau d'épice</label>
+                        <div class="react-select"
+                             data-options='@json($spicyLevelTypes)'
+                             data-name="spicy_level"
+                             data-default-value='@json($selectedSpicy)'
+                        ></div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="d-flex h-100 align-items-end">
+                            <button class="btn btn-primary">Rechercher</button>
+                        </div>
+                    </div>
+            </div>
+            </form>
             <div class="row mt-3">
                 <div class="col-md-12">
                     <div class="table-responsive">
                         <table class="listing table table-striped table-bordered">
                             <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Titre</th>
+                                <th>
+                                    <a href="{{route('admin.plat.index',
+                                            ['ingredients'=> request()->get('ingredients'), 'spicy_level'=> request()->get('spicy_level'), 'order_by'=>'id',
+                                            'direction' => request()->get('direction') === 'asc' ? 'desc' : 'asc' ])}}"
+                                            class="btn btn-outline-secondary btn-sm btn-sm"
+                                    >ID</a>
+                                </th>
+                                <th>
+                                    <a href="{{route('admin.plat.index',
+                                            ['ingredients'=> request()->get('ingredients'), 'spicy_level'=> request()->get('spicy_level'), 'order_by'=>'titre',
+                                            'direction' => request()->get('direction') === 'asc' ? 'desc' : 'asc' ])}}"
+                                            class="btn btn-outline-secondary btn-sm btn-sm"
+                                    >Titre</a>
+                                </th>
                                 <th>Titre thai</th>
                                 <th>Description</th>
                                 <th>Ingrédients</th>

@@ -3,26 +3,62 @@
 namespace App\Http\Controllers;
 
 use App\Enums\SpicyLevelType;
+use App\Http\Middleware\TrimStrings;
 use App\Http\Requests\StorePlatRequest;
 use App\Http\Requests\UpdatePlatRequest;
 use App\Models\Image;
 use App\Models\Ingredient;
 use App\Models\Plat;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 
 class PlatController extends Controller
 {
     public function index(Request $request)
     {
-
-
+        $ingredients =  Ingredient::asReactSelectArray();
+        $selectedIngredients = [];
+        $selectedSpicy = null;
         $plats = Plat::query();
+        $paramIngredients = $request->input('ingredients');
+
+        if($request->filled('spicy_level')){
+            $selectedSpicy = Arr::first(SpicyLevelType::asReactSelectArray(),
+                fn($el, $key) => $el['value'] === (int)$request->input('spicy_level'));
+            $plats->where('spicy_level', $request->input('spicy_level'));
+        }
+
+        if($paramIngredients && is_countable($paramIngredients)
+            && count($paramIngredients) > 0 && $paramIngredients[0] !== null) {
+            foreach ($ingredients as $ingredient) {
+                foreach ($request->input('ingredients') as $i){
+                    if($ingredient['value'] === (int)$i) {
+                        $selectedIngredients[] = $ingredient;
+                    }
+                }
+            }
+            $plats->join('plat_ingredient as pi', 'plats.id', '=', 'pi.plat_id')
+                ->whereIn('pi.ingredient_id', $request->input('ingredients'));
+        }
+
+        if($request->filled('search')){
+            $plats->where(function ($query)use($request) {
+                $query->where('titre', 'like', '%' . $request->input('search') . '%');
+                $query->orWhere('titre_thai', 'like', '%' . $request->input('search') . '%');
+                $query->orWhere('description', 'like', '%' . $request->input('search') . '%');
+            });
+        }
 
         if($request->has('ingredient_id')) {
             $plats->join('plat_ingredient as pi', 'plats.id', '=', 'pi.plat_id')
                 ->where('pi.ingredient_id', $request->input('ingredient_id'));
         }
+
+        if($request->has('order_by')) {
+            $plats->orderBy($request->input('order_by'), $request->input('direction'));
+        }
+
 
         //$plats->each->append('icons');
         /*
@@ -36,7 +72,13 @@ class PlatController extends Controller
             $plat->append('icons');
         }
         */
-        return view('admin.plat.index')->withPlats($plats->get());
+       // dd($plats->toSql());
+        return view('admin.plat.index')
+            ->with('selectedSpicy', $selectedSpicy)
+            ->with('spicyLevelTypes', SpicyLevelType::asReactSelectArray())
+            ->withSelectedIngredients($selectedIngredients)
+            ->with('ingredients',$ingredients)
+            ->withPlats($plats->get());
     }
 
     public function create()
@@ -102,7 +144,7 @@ class PlatController extends Controller
         }
     dd($selectSpicyLevel);
         */
-        $selectedSpicyLevel = \Illuminate\Support\Arr::first(SpicyLevelType::asReactSelectArray(),fn($el, $key)=> $el['value'] === $plat->spicy_level);
+        $selectedSpicyLevel = Arr::first(SpicyLevelType::asReactSelectArray(),fn($el, $key)=> $el['value'] === $plat->spicy_level);
 
         return view('admin.plat.edit')
             ->withIngredients(Ingredient::asReactSelectArray())

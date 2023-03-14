@@ -20,19 +20,29 @@
             <form id="edit-form" action="{{route('admin.ingredient.update', $ingredient)}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="mb-3">
                             <label for="name" class="form-label">Titre</label>
                             <input id="name" type="text" name="name" class="form-control" required value="{{old('name') ?? $ingredient->name}}">
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="mb-3">
                             <label for="image" class="form-label">Sélectionner une image</label>
                             <input class="form-control" type="file" name="image" id="image">
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
+                        <div class="mb-3">
+                            <label for="replace_id" class="form-label">Remplacement</label>
+                            <div class="react-select"
+                                 data-options='@json($ingredients)'
+                                 data-name="replace_id"
+                                 data-default-value='@json($selectedIngredient)'
+                            ></div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
                         <div class="mb-3">
                             <label  class="form-label d-block">Allergène ?</label>
                             <label for="is_allergen" class="switch">

@@ -18,6 +18,8 @@
                             <thead>
                             <tr class="text-center">
                                 <th class="text-center" style="width: 30px;">ID</th>
+                                <th class="text-center" style="width: 30px;">Remplacement</th>
+                                <th class="text-center" style="width: 30px;">Stock</th>
                                 <th class="text-center" style="width: 200px;">Image</th>
                                 <th>name</th>
                                 <th>Description</th>
@@ -29,6 +31,13 @@
                             @foreach($ingredients as $ingredient)
                                 <tr>
                                     <td>{{$ingredient->id}}</td>
+                                    <td>{{$ingredient->replace_id}}</td>
+                                    <td class="text-center">
+                                        <div class="stock-switch"
+                                             data-checked='@json((bool)$ingredient->stock)'
+                                             data-id='@json($ingredient->id)'
+                                        ></div>
+                                    </td>
                                     <td>
                                         @if($ingredient->image)
                                             <img class="img-fluid" src="/storage/{{$ingredient->image->path}}" alt="{{$ingredient->image->nom}}">
@@ -36,7 +45,9 @@
                                     </td>
                                     <td>{{$ingredient->name}}</td>
                                     <td>{!! $ingredient->description !!}</td>
-                                    <td class="text-center"> {!! $ingredient->is_allergen === 1 ? '<i class="fa-solid fa-exclamation h3 text-danger"></i>' : '<i class="fa-solid fa-circle text-success"></i>' !!}</td>
+                                    <td class="text-center">
+                                        {!! $ingredient->is_allergen === 1 ? '<i class="fa-solid fa-triangle-exclamation text-danger"></i>' : '<i class="fa-solid fa-user-shield text-success"></i>' !!}
+                                    </td>
                                     <td>
                                         <a href="{{route('admin.ingredient.edit', $ingredient)}}" class="btn btn-sm btn-success">Editer</a>
                                         <a href="{{route('admin.ingredient.delete', $ingredient)}}" class="btn btn-sm btn-danger btn-delete">Supprimer</a>

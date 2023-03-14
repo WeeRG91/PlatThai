@@ -40,6 +40,11 @@ Route::prefix('admin')->name('admin.')->group(function (){
         Route::get('{ingredient}/edit', [IngredientController::class, 'edit'])->name('edit');
         Route::post('update/{ingredient}', [IngredientController::class, 'update'])->name('update');
         Route::get('{id}/delete', [IngredientController::class, 'delete'])->name('delete');
+
+        /**
+         * API
+         */
+        Route::post('toggle-stock/{ingredient}', [IngredientController::class, 'toggleStock'])->name('toggleStock');
     });
 
     Route::name('image.')->prefix('image')->group(function (){

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Image;
 use App\Models\Ingredient;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 
 class IngredientController extends Controller
@@ -74,7 +75,13 @@ class IngredientController extends Controller
      */
     public function edit(Ingredient $ingredient)
     {
-        return view('admin.ingredient.edit')->withIngredient($ingredient);
+        //$selected = Ingredient::find($ingredient);
+        $selectedIngredient = Arr::first(Ingredient::asReactSelectArray(), fn($el, $key)=>$el['value'] === $ingredient->replace_id);
+        $ingredients = Ingredient::asReactSelectArray();
+        return view('admin.ingredient.edit')
+            ->with('selectedIngredient', $selectedIngredient)
+            ->with('ingredients', $ingredients)
+            ->withIngredient($ingredient);
     }
 
     /**
@@ -84,9 +91,8 @@ class IngredientController extends Controller
     public function update(Request $request, Ingredient $ingredient)
     {
         //$ingredient = Ingredient::find($id);
-       // dd($ingredient);
-
         $ingredient->update([
+            'replace_id' => $request->input('replace_id'),
             'name' =>  $request->input('name'),
             'description' =>  $request->input('description'),
             'is_allergen' =>  $request->input('is_allergen') ?? 0,
@@ -123,5 +129,12 @@ class IngredientController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function toggleStock(Request $request, Ingredient $ingredient)
+    {
+        $ingredient->update(['stock' => !$ingredient->stock]);
+
+        return response()->json('ok');
     }
 }

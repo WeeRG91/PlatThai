@@ -18,7 +18,7 @@ class Ingredient extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'description', 'is_allergen'];
+    protected $fillable = ['name', 'replace_id', 'stock', 'description', 'is_allergen'];
 
     /**
      * @return BelongsToMany

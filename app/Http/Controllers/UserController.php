@@ -6,6 +6,7 @@ use App\Enums\Permissions\PermissionType;
 use App\Enums\Permissions\PlatPermissionType;
 use App\Enums\Permissions\RoleType;
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\Image;
 use App\Models\User;
 use Illuminate\Hashing\BcryptHasher;
@@ -105,14 +106,19 @@ class UserController extends Controller
      * @param  int  $id
      * @return RedirectResponse
      */
-    public function update(Request $request)
+    public function update(UpdateUserRequest $request)
     {
         $user = User::find($request->input('id'));
         $user->update([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
-            'password' => Hash::make($request->input('password')),
         ]);
+
+        if($request->input('password')) {
+            $user->update([
+                'password' => Hash::make($request->input('password'))
+            ]);
+        }
 
         $user->permissions()->sync($request->input('permissions'));
         $user->roles()->sync($request->input('roles'));
