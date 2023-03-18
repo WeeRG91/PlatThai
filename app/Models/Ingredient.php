@@ -37,6 +37,13 @@ class Ingredient extends Model
         return $this->hasOne(Image::class, 'model_id', 'id')->where('model_class', Ingredient::class);
     }
 
+    public function remplacement()
+    {
+        return $this->hasOne(Ingredient::class, 'id', 'replace_id');
+    }
+
+
+
     public static function asReactSelectArray()
     {
 

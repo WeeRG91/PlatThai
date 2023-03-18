@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Image;
 use App\Models\Ingredient;
+use App\Models\Plat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
@@ -16,8 +17,37 @@ class IngredientController extends Controller
      */
     public function index()
     {
-        $ingredients = Ingredient::all();
-        return view('admin.ingredient.index')->withIngredients($ingredients);
+        //$ingredients = Ingredient::all();
+        return view('admin.ingredient.index');
+    }
+
+    public function search(Request $request)
+    {
+        $ingredients = Ingredient::query()
+            ->leftJoin('ingredients as i2', 'i2.id', '=', 'ingredients.replace_id');
+
+        if($request->filled('searchTerm')) {
+            $ingredients->where('name', 'like', '%'.$request->input('searchTerm').'%');
+        }
+
+        if($request->filled('descriptionTerm')) {
+            $ingredients->where('description', 'like', '%'.$request->input('descriptionTerm').'%');
+        }
+
+        $ingredients->with('remplacement');
+        $ingredients->with('image');
+
+
+        $ingredients->orderBy($request->input('orderBy'),$request->input('direction') );
+        $ingredients = $ingredients->selectRaw('ingredients.*, i2.name as `replace`')->get();
+
+        return response()->json(['ingredients' => $ingredients]);
+    }
+
+    public function isAllergen(Request $request, Ingredient $ingredient)
+    {
+        $ingredient->update(['is_allergen' => !$ingredient->is_allergen]);
+        return response()->json('ok');
     }
 
     /**
@@ -134,7 +164,6 @@ class IngredientController extends Controller
     public function toggleStock(Request $request, Ingredient $ingredient)
     {
         $ingredient->update(['stock' => !$ingredient->stock]);
-
         return response()->json('ok');
     }
 }

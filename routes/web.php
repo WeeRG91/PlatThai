@@ -41,6 +41,9 @@ Route::prefix('admin')->name('admin.')->group(function (){
         Route::post('update/{ingredient}', [IngredientController::class, 'update'])->name('update');
         Route::get('{id}/delete', [IngredientController::class, 'delete'])->name('delete');
 
+        Route::post('search', [IngredientController::class, 'search'])->name('search');
+        Route::post('allergen/{ingredient}', [IngredientController::class, 'isAllergen'])->name('isAllergen');
+
         /**
          * API
          */
